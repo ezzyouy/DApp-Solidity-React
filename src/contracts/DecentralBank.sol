@@ -37,7 +37,7 @@ contract DecentralBank {
         hasStaked[msg.sender] = true;
     }
 
-    function essueTokens() public {
+    function issueTokens() public {
         require(msg.sender == owner, "caller must be the owner");
 		
         for (uint i = 0; i < stackers.length; i++) {
