@@ -77,6 +77,9 @@ contract('DecentralBank', ([owner, customer]) => {
         'customer is staking status after staking'
 	  )
 		
+		await dBank.issueTokens({ from: owner })
+		await dBank.issueToken({from: customer}).should.be.rejected;
+		
     })
   })
 })
