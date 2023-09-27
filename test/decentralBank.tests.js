@@ -78,7 +78,7 @@ contract('DecentralBank', ([owner, customer]) => {
       )
 
       await dBank.issueTokens({ from: owner })
-      await dBank.issueToken({ from: customer }).should.be.rejected
+      await dBank.issueTokens({ from: customer }).should.be.rejected
 
       await dBank.unstakeTokens({ from: customer })
 
