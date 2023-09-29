@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import tether from '../tether.png'
+import Airdrop from './Airdrop'
 
 class Main extends Component {
   constructor (props) {
@@ -14,22 +15,23 @@ class Main extends Component {
         <table className='table text-muted text-center'>
           <thead>
             <tr>
-              <th scope='col' style={{ color: 'black' }}>
-                Staking balance
+              <th scope='col' style={{ opacity: '.7'}}>
+                Staking Balance
               </th>
-              <th scope='col' style={{ color: 'black' }}>
+              <th scope='col' style={{ opacity: '.7'}}>
                 Reward Balance
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             <tr>
-              <td scope='col' style={{ color: 'black' }}>
-                {window.web3.utils.fromWei(this.props.stakingBalance,'ether')}{' '}
-                USDT
+              <td style={{ opacity: '.7' }}>
+                {window.web3.utils.fromWei(this.props.stakingBalance, 'ether')}{' '}
+                - USDT
               </td>
-              <td scope='col' style={{ color: 'black' }}>
-                {window.web3.utils.fromWei(this.props.rwdBalance, 'ether')} RWD
+              <td style={{ opacity: '.7' }}>
+                {window.web3.utils.fromWei(this.props.rwdBalance, 'ether')} -
+                Reward{' '}
               </td>
             </tr>
           </tbody>
@@ -63,7 +65,7 @@ class Main extends Component {
           </form>
           <button className='btn btn-primary btn-lg btn-block'>WITHDRAW</button>
           <div className='card-body text-center' style={{ color: 'blue' }}>
-            AIRDROP
+					AIRDROP <Airdrop stakingBalance={ this.props.stakingBalance} />
           </div>
         </div>
       </div>

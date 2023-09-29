@@ -6,6 +6,7 @@ import Tether from '../truffle_abis/Tether.json'
 import RWD from '../truffle_abis/RWD.json'
 import DecBank from '../truffle_abis/DecentralBank.json'
 import Main from './Main'
+import ParticleSetting from './ParticleSettings'
 
 class App extends Component {
   async UNSAFE_componentWillMount () {
@@ -70,6 +71,21 @@ class App extends Component {
     this.setState({ loading: false })
   }
 
+  stakeTokens = amount => {
+    this.setState({ loading: true })
+    this.state.tether.methods
+      .approve(this.state.decentralBank._address, amount)
+      .send({ from: this.state.account })
+      .on('trannsactionHash', hash => {
+        this.state.decentralBank.methods
+          .depositToken(amount)
+          .send({ from: this.state.account })
+          .on('trannsactionHash', hash => {
+            this.setState({ loading: false })
+          })
+      })
+  }
+
   constructor (props) {
     super(props)
     this.state = {
@@ -97,11 +113,17 @@ class App extends Component {
               tetherBalance={this.state.tetherBalance}
               rwdBalance={this.state.rwdBalance}
               stakingBalance={this.state.stakingBalance}
+              stakeTokens={this.state.stakeTokens}
             />
           ))
     }
     return (
-      <div>
+      <div className='App' style={{ position: 'relative' }}>
+        <div style={{ position: 'absolute' }}>
+          <ParticleSetting
+            url='http://foo.bar/particles.json'
+          />
+        </div>
         <Navbar account={this.state.account} />
         <div className='container  p-5 my-5'>
           <div className='row content'>

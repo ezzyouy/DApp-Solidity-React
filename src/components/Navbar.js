@@ -8,17 +8,17 @@ class Navbar extends Component {
         className='navbar navbar-dark fixed-top shadow p-0'
         style={{ backgroundColor: 'black', height: '50px' }}
       >
-        <a
+        <a href='/'
           className='navbar-brand col-sm-3 col-md-2 mr-0'
           style={{ color: 'white' }}
         >
-          ;
+          
           <img
             src={bank}
             width='50'
             height='30'
             className='d-inline-block align-top'
-            alt='bank image'
+            alt='bank'
           />
           &nbsp; DAPP Yield Staking (Decentralized Banking)
         </a>
